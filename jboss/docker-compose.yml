@@ -1,0 +1,9 @@
+services:
+  jboss-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8090:8090"
+      - "9990:9990"
+

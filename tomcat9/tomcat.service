@@ -1,0 +1,28 @@
+[Unit]
+Description=Apache Tomcat Web Application Container
+After=network.target
+
+[Service]
+Type=forking
+
+# Especifica o usuário e grupo anteriormente criados os quais o tomcat será executado
+User=tomcat
+Group=tomcat
+
+# Especifica os diretórios de instalação do tomcat, é importante verificar também se o diretório do java condiz com o da versão instalada, no nosso caso é a versão 11.
+Environment="JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64"
+Environment="CATALINA_PID=/opt/tomcat9/temp/tomcat.pid"
+Environment="CATALINA_HOME=/opt/tomcat9"
+Environment="CATALINA_BASE=/opt/tomcat9"
+Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+Environment="JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom"
+
+# Comandos de inicialização e parada do tomcat
+ExecStart=/opt/tomcat9/bin/startup.sh
+ExecStop=/opt/tomcat9/bin/shutdown.sh
+
+# Permitir reinicializações automáticas em caso de falha
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

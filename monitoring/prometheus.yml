@@ -1,0 +1,20 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  
+  - job_name: 'tomcat'
+    static_configs:
+      - targets: ['192.168.0.18:8081']
+
+  - job_name: 'jenkins'
+    metrics_path: /jenkins/prometheus
+    scheme: http    
+    static_configs:
+      - targets: ['192.168.0.18:8080']
+    tls_config:
+      insecure_skip_verify: true
+
+  - job_name: 'debian'
+    static_configs:
+      - targets: ['192.168.0.18:9100']

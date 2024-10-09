@@ -1,0 +1,19 @@
+services:
+   # Container Prometheus com Imagem atual e fazendo referência as configurações do .yml da aplicação
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+   # Container grafana com Imagem atual
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    volumes:
+      - ./grafana:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
