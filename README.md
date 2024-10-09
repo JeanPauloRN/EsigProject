@@ -424,6 +424,8 @@ EXPOSE 8090 9990
 # Comando para iniciar o JBoss na porta 8090 e habilitar acesso e gerenciamento
 CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "192.168.0.100", "-Djboss.bind.address.management=0.0.0.0", "-Djboss.http.port=8090"]
 ```
+Observação: Ressalto que o projeto usado como exemplo de aplicação consta no link 
+https://github.com/aeimer/java-example-helloworld-war/tree/master. Optei por uma abordagem baseada em Dockerfile, abandonando o script do autor para a automatização.
 
 Agora vamos fazer o deploy da aplicação
 
